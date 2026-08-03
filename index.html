@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaFollows - Boost Your Instagram Presence</title>
+    <style>
+        :root {
+            --primary: #e1306c;
+            --primary-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --dark: #121212;
+            --card-bg: #1e1e1e;
+            --text: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #0095f6;
+            --free-accent: #2ecc71;
+            --gold: #f1c40f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navbar Styles */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #2d2d2d;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-banner {
+            display: inline-block;
+            background: linear-gradient(45deg, #2ecc71, #11998e);
+            color: #121212;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 750px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(225, 48, 108, 0.4);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.6);
+        }
+
+        .free-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            color: #121212;
+            padding: 0.9rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .free-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.5);
+        }
+
+        /* Payment Strip Bar */
+        .payments-bar {
+            background-color: #161616;
+            border-y: 1px solid #2d2d2d;
+            padding: 1.2rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .payments-bar-title {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .payment-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            background: #222222;
+            color: #ffffff;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid #333;
+        }
+
+        .tag.upi {
+            border-color: #2ecc71;
+            color: #2ecc71;
+            background: rgba(46, 204, 113, 0.1);
+        }
+
+        .tag.crypto {
+            border-color: #f39c12;
+            color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        /* Proofs / Social Proof Section */
+        .proofs-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .proofs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .proof-card {
+            background: var(--card-bg);
+            border: 1px solid #2d2d2d;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .proof-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .chat-bubble-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            background: #141414;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid #282828;
+            font-size: 0.95rem;
+        }
+
+        .msg {
+            padding: 0.6rem 1rem;
+            border-radius: 18px;
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+
+        .msg.sent {
+            background: #0095f6;
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg.received {
+            background: #262626;
+            color: #fff;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .proof-caption {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--free-accent);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #2d2d2d;
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            border: 1px solid #2d2d2d;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .pricing-card.free-trial {
+            border: 2px solid #2ecc71;
+            background: linear-gradient(180deg, rgba(46, 204, 113, 0.1) 0%, var(--card-bg) 100%);
+        }
+
+        .pricing-card.free-trial:hover {
+            border-color: #2ecc71;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #e1306c;
+            background: linear-gradient(180deg, rgba(225,48,108,0.1) 0%, var(--card-bg) 100%);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .badge.green {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            color: #121212;
+        }
+
+        .followers-count {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2ecc71;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .card-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-features li::before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .order-btn {
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: bold;
+            display: block;
+            transition: opacity 0.2s;
+        }
+
+        .order-btn.free-btn-card {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            color: #121212;
+            font-weight: 800;
+        }
+
+        .order-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #2d2d2d;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">InstaFollows</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#proofs">Proof & Delivery</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#features">Why Us</a></li>
+                <li><a href="payment.html">Order / Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-banner">⚡ 100% FREE 10 FOLLOWERS EVERY 24 HOURS ⚡</div>
+        <h1>Skyrocket Your Instagram Growth! 🚀</h1>
+        <p>Build instant authority, boost your social proof, and supercharge your reach with India's most trusted follower growth service. Safe, instant, and unbeatable prices!</p>
+        <div class="hero-buttons">
+            <a href="payment.html?plan=Free_Trial_10_Followers&price=0" class="free-btn">🎁 CLAIM 10 FREE FOLLOWERS NOW</a>
+            <a href="#packages" class="cta-btn">SEE OUR PACKAGES</a>
+        </div>
+    </section>
+
+    <!-- Payment Options Bar -->
+    <div class="payments-bar">
+        <div class="payments-bar-title">💳 ACCEPTED PAYMENT METHODS</div>
+        <div class="payment-tags">
+            <span class="tag upi">⚡ UPI / QR Code</span>
+            <span class="tag upi">📱 Google Pay (GPay)</span>
+            <span class="tag crypto">🪙 Bitcoin (BTC)</span>
+            <span class="tag crypto">☀️ Solana (SOL)</span>
+            <span class="tag crypto">🔶 BNB</span>
+            <span class="tag crypto">🌐 All Major Crypto</span>
+        </div>
+    </div>
+
+    <!-- Proofs / Social Proof Section -->
+    <section class="proofs-section" id="proofs">
+        <h2 class="section-title">🔥 Real Proof & Happy Clients!</h2>
+        <p class="section-subtitle">Here is real proof of our instant follower delivery and client DM confirmations.</p>
+
+        <div class="proofs-grid">
+            <!-- Proof Card 1 -->
+            <div class="proof-card">
+                <div class="chat-bubble-container">
+                    <div class="msg sent">Did u get??</div>
+                    <div class="msg received">Mm</div>
+                    <div class="msg received">Yes</div>
+                    <div class="msg received">My follower 205 ❤️</div>
+                </div>
+                <div class="proof-caption">
+                    ✅ Follower Count Delivery Confirmed!
+                </div>
+            </div>
+
+            <!-- Proof Card 2 -->
+            <div class="proof-card">
+                <div class="chat-bubble-container">
+                    <div class="msg sent">20/-</div>
+                    <div class="msg sent">U are at 700 followers</div>
+                    <div class="msg sent">I gave u extra followers for free</div>
+                    <div class="msg received">Brw ni8 ❤️</div>
+                    <div class="msg received">K va ❤️</div>
+                </div>
+                <div class="proof-caption">
+                    ⚡ 700 Followers + Free Bonus Followers Delivered!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="feature-card">
+            <h3>🎁 FREE Daily Trial</h3>
+            <p>Experience our quality firsthand! Claim 10 free followers every single 24 hours — zero payment needed.</p>
+        </div>
+        <div class="feature-card">
+            <h3>⚡ Lightning Fast</h3>
+            <p>Orders are dispatched rapidly right after confirmation. Watch your numbers explode in hours!</p>
+        </div>
+        <div class="feature-card">
+            <h3>💸 Unbeatable Prices</h3>
+            <p>Get reliable growth starting at just ₹5! Premium service at the lowest market rate guaranteed.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 100% Safe & Secure</h3>
+            <p>No passwords ever requested. We only need your public username link to deliver followers.</p>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="packages">
+        <h2 class="section-title">Our Growth Packages</h2>
+        <p class="section-subtitle">Select a package below to order or claim your daily free trial!</p>
+
+        <div class="pricing-grid">
+            <!-- Free Trial Plan -->
+            <div class="pricing-card free-trial">
+                <div class="badge green">FREE DAILY TRIAL</div>
+                <div>
+                    <div class="followers-count">10 Followers</div>
+                    <div class="price">₹0 <span>/ 24 hrs</span></div>
+                    <ul class="card-features">
+                        <li>100% FREE Every 24 Hours</li>
+                        <li>No Password Needed</li>
+                        <li>Instant Processing</li>
+                        <li>Test Before You Buy</li>
+                    </ul>
+                </div>
+                <a href="payment.html?plan=Free_Trial_10_Followers&price=0" class="order-btn free-btn-card">CLAIM FREE TRIAL</a>
+            </div>
+
+            <!-- Plan 1 -->
+            <div class="pricing-card">
+                <div>
+                    <div class="followers-count">100 Followers</div>
+                    <div class="price">₹5</div>
+                    <ul class="card-features">
+                        <li>Instant Start</li>
+                        <li>No Password Needed</li>
+                        <li>High Speed Delivery</li>
+                    </ul>
+                </div>
+                <a href="payment.html?plan=100_Followers&price=5" class="order-btn">GET STARTED</a>
+            </div>
+
+            <!-- Plan 2 -->
+            <div class="pricing-card">
+                <div>
+                    <div class="followers-count">200 Followers</div>
+                    <div class="price">₹10</div>
+                    <ul class="card-features">
+                        <li>Instant Start</li>
+                        <li>No Password Needed</li>
+                        <li>High Speed Delivery</li>
+                    </ul>
+                </div>
+                <a href="payment.html?plan=200_Followers&price=10" class="order-btn">GET STARTED</a>
+            </div>
+
+            <!-- Plan 3 -->
+            <div class="pricing-card popular">
+                <div class="badge">MOST POPULAR</div>
+                <div>
+                    <div class="followers-count">500 Followers</div>
+                    <div class="price">₹20</div>
+                    <ul class="card-features">
+                        <li>Instant Start</li>
+                        <li>No Password Needed</li>
+                        <li>High Speed Delivery</li>
+                        <li>Best Value Choice</li>
+                    </ul>
+                </div>
+                <a href="payment.html?plan=500_Followers&price=20" class="order-btn" style="background: var(--primary-gradient);">GET STARTED</a>
+            </div>
+
+            <!-- Plan 4 -->
+            <div class="pricing-card">
+                <div>
+                    <div class="followers-count">700 Followers</div>
+                    <div class="price">₹30</div>
+                    <ul class="card-features">
+                        <li>Instant Start</li>
+                        <li>No Password Needed</li>
+                        <li>High Speed Delivery</li>
+                    </ul>
+                </div>
+                <a href="payment.html?plan=700_Followers&price=30" class="order-btn">GET STARTED</a>
+            </div>
+
+            <!-- Plan 5 -->
+            <div class="pricing-card popular">
+                <div class="badge">BEST DEAL</div>
+                <div>
+                    <div class="followers-count">1,000 Followers</div>
+                    <div class="price">₹60</div>
+                    <ul class="card-features">
+                        <li>Instant Start</li>
+                        <li>No Password Needed</li>
+                        <li>High Speed Delivery</li>
+                        <li>Maximum Savings</li>
+                    </ul>
+                </div>
+                <a href="payment.html?plan=1000_Followers&price=60" class="order-btn" style="background: var(--primary-gradient);">GET STARTED</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 InstaFollows. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

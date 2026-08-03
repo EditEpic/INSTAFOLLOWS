@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Free Followers & Order - InstaFollows</title>
+    <style>
+        :root {
+            --primary: #e1306c;
+            --primary-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --dark: #121212;
+            --card-bg: #1e1e1e;
+            --text: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #0095f6;
+            --free-green: #2ecc71;
+            --gold: #f1c40f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #2d2d2d;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+
+        .payment-box {
+            background-color: var(--card-bg);
+            border: 1px solid #2d2d2d;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(225, 48, 108, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-glow {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 250px;
+            background: var(--primary-gradient);
+            filter: blur(100px);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .free-banner {
+            background: linear-gradient(45deg, #2ecc71, #11998e);
+            color: #121212;
+            padding: 0.9rem 1.2rem;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .payment-box h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .highlight-text {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .dm-badge {
+            display: inline-block;
+            background: #262626;
+            border: 2px solid #0095f6;
+            padding: 0.9rem 1.8rem;
+            border-radius: 35px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0095f6;
+            margin: 1.5rem 0 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Payment Methods Section */
+        .payment-methods {
+            margin: 1.8rem 0;
+            background: #141414;
+            border: 1px solid #2d2d2d;
+            border-radius: 14px;
+            padding: 1.2rem;
+            text-align: left;
+        }
+
+        .payment-methods h3 {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .method-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .tag {
+            background: #252525;
+            color: #ffffff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #3d3d3d;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tag.crypto {
+            border-color: #f39c12;
+            color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .tag.upi {
+            border-color: #2ecc71;
+            color: #2ecc71;
+            background: rgba(46, 204, 113, 0.1);
+        }
+
+        .steps {
+            text-align: left;
+            background-color: #141414;
+            padding: 1.5rem;
+            border-radius: 14px;
+            border: 1px solid #2d2d2d;
+            margin-top: 1.5rem;
+        }
+
+        .steps h4 {
+            margin-bottom: 0.8rem;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .steps ol {
+            padding-left: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .steps li {
+            margin-bottom: 0.8rem;
+        }
+
+        .steps strong {
+            color: #fff;
+        }
+
+        .dm-button {
+            display: block;
+            width: 100%;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            padding: 1.1rem;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dm-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(225, 48, 108, 0.7);
+        }
+
+        .guarantee {
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        footer {
+            border-top: 1px solid #2d2d2d;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">InstaFollows</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#packages">Packages</a></li>
+                <li><a href="payment.html">Order / Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="payment-box">
+            <div class="banner-glow"></div>
+
+            <!-- Hook Banner -->
+            <div class="free-banner">
+                🔥 INSTANT ACCESS • FREE 10 FOLLOWERS TODAY! 🔥
+            </div>
+
+            <h2>Skyrocket Your Account Fast! 🚀</h2>
+            <p style="color: var(--text-secondary); font-size: 1.05rem;">
+                Ready for explosive growth? DM us right now to claim your <span class="highlight-text">FREE TRIAL</span> or lock in your boost package!
+            </p>
+
+            <div class="dm-badge">
+                DM Instagram: <span style="color: #fff;">@editepic.yzf</span>
+            </div>
+
+            <!-- Accepted Payment Options -->
+            <div class="payment-methods">
+                <h3>💳 Accepted Payment Options</h3>
+                <div class="method-tags">
+                    <span class="tag upi">⚡ UPI / QR</span>
+                    <span class="tag upi">📱 Google Pay (GPay)</span>
+                    <span class="tag crypto">🪙 Bitcoin (BTC)</span>
+                    <span class="tag crypto">☀️ Solana (SOL)</span>
+                    <span class="tag crypto">🔶 BNB</span>
+                    <span class="tag crypto">🌐 & Other Crypto</span>
+                </div>
+            </div>
+
+            <!-- Easy Order Steps -->
+            <div class="steps">
+                <h4>⚡ How to Claim / Order in 60 Seconds:</h4>
+                <ol>
+                    <li>Click the button below to message <strong>@editepic.yzf</strong> on Instagram.</li>
+                    <li>Send a message with:
+                        <ul>
+                            <li>• <strong>"FREE TRIAL"</strong> (for your 10 free followers every 24 hrs) <br><em>OR</em></li>
+                            <li>• Your preferred package (e.g., <strong>₹5 for 100 followers</strong>, <strong>₹60 for 1k followers</strong>).</li>
+                        </ul>
+                    </li>
+                    <li>Provide your target Instagram username link and watch your followers increase! 🔥</li>
+                </ol>
+            </div>
+
+            <a href="https://instagram.com/editepic.yzf" target="_blank" class="dm-button">
+                👉 DM @EDITEPIC.YZF NOW TO START 🚀
+            </a>
+
+            <div class="guarantee">
+                🔒 100% Safe • No Password Required • Guaranteed Fast Delivery
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 InstaFollows. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
