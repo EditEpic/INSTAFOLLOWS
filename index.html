@@ -167,8 +167,7 @@
         /* Payment Strip Bar */
         .payments-bar {
             background-color: #161616;
-            border-top: 1px solid #2d2d2d;
-            border-bottom: 1px solid #2d2d2d;
+            border-y: 1px solid #2d2d2d;
             padding: 1.2rem 2rem;
             margin: 3rem 0;
             text-align: center;
@@ -212,7 +211,7 @@
             background: rgba(243, 156, 18, 0.1);
         }
 
-        /* Proofs Section */
+        /* Proofs / Social Proof Section */
         .proofs-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -480,6 +479,15 @@
             opacity: 0.9;
         }
 
+        
+        .order-btn.out-of-stock-btn {
+            background: #444444 !important;
+            color: #888888 !important;
+            cursor: not-allowed;
+            border: 1px solid #555555;
+            box-shadow: none !important;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid #2d2d2d;
@@ -627,7 +635,7 @@
                         <li>Test Before You Buy</li>
                     </ul>
                 </div>
-                <a href="payment.html?plan=Free_Trial_10_Followers&price=0" class="order-btn free-btn-card">CLAIM FREE TRIAL</a>
+                <button class="order-btn out-of-stock-btn" disabled>OUT OF STOCK</button>
             </div>
 
             <!-- Plan 1 -->
